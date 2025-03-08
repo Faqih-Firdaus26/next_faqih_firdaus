@@ -83,7 +83,7 @@ export default function Navbar() {
           <Link href="/" className="flex items-center">
             <div className="h-10 w-10 overflow-hidden rounded-full border-2 border-primary/20 mr-3">
               <img
-                src="/about/faqih.jpg"
+                src="/about/me.jpg"
                 alt="Profile"
                 className="h-full w-full object-cover"
               />
