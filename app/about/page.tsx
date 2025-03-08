@@ -1,18 +1,18 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
-import { motion, useScroll, useTransform } from "framer-motion"
+import { useEffect, useState } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 const skills = [
-  { name: "JavaScript", icon: "/icons/javascript.svg" },
-  { name: "React", icon: "/icons/react.svg" },
-  { name: "Node.js", icon: "/icons/nodejs.svg" },
-  { name: "Laravel", icon: "/icons/Laravel.svg" },
-  { name: "Next.js", icon: "/icons/nextjs.svg" },
-  { name: "Tailwind CSS", icon: "/icons/tailwindcss.svg" },
-  { name: "MongoDB", icon: "/icons/mongodb.svg" },
-  { name: "MySql", icon: "/icons/MySql.svg" },
-]
+  { name: "JavaScript", icon: "/skills/javascript.png" },
+  { name: "PHP", icon: "/skills/php.png" },
+  { name: "React", icon: "/skills/react.png" },
+  { name: "Laravel", icon: "/skills/laravel.png" },
+  { name: "Next.js", icon: "/skills/nextjs.png" },
+  { name: "Tailwind CSS", icon: "/skills/tailwind.jpeg" },
+  { name: "MongoDB", icon: "/skills/mongodb.png" },
+  { name: "MySql", icon: "/skills/mysql.png" },
+];
 
 const education = [
   {
@@ -23,22 +23,22 @@ const education = [
     image:
       "https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1186&q=80",
   },
-]
+];
 
 export default function AboutPage() {
-  const [scrollY, setScrollY] = useState(0)
-  const { scrollYProgress } = useScroll()
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
-  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8])
+  const [scrollY, setScrollY] = useState(0);
+  const { scrollYProgress } = useScroll();
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrollY(window.scrollY)
-    }
+      setScrollY(window.scrollY);
+    };
 
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -49,12 +49,12 @@ export default function AboutPage() {
         delayChildren: 0.3,
       },
     },
-  }
+  };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 },
-  }
+  };
 
   return (
     <motion.div
@@ -64,7 +64,10 @@ export default function AboutPage() {
       variants={containerVariants}
     >
       {/* Parallax header */}
-      <motion.div className="relative mb-16 overflow-hidden rounded-xl py-16" variants={itemVariants}>
+      <motion.div
+        className="relative mb-16 overflow-hidden rounded-xl py-16"
+        variants={itemVariants}
+      >
         <motion.div
           className="absolute inset-0 z-0"
           initial={{ y: 0 }}
@@ -98,7 +101,10 @@ export default function AboutPage() {
         </div>
       </motion.div>
 
-      <motion.div className="grid gap-12 md:grid-cols-2" variants={itemVariants}>
+      <motion.div
+        className="grid gap-12 md:grid-cols-2"
+        variants={itemVariants}
+      >
         <motion.div
           className="perspective"
           initial={{ opacity: 0, x: -50 }}
@@ -117,7 +123,7 @@ export default function AboutPage() {
           >
             <div className="overflow-hidden rounded-lg bg-primary/10">
               <img
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
+                src="/about/me.jpg"
                 alt="Faqih Al Firdaus"
                 className="h-full w-full object-cover"
               />
@@ -141,9 +147,10 @@ export default function AboutPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            I am a diligent and reliable Electrical Engineering student at Singaperbangsa University of Karawang,
-            specializing in creating modern web applications. I am passionate about problem-solving and always strive to
-            improve my skills in programming and teamwork.
+            I am a diligent and reliable Electrical Engineering student at
+            Singaperbangsa University of Karawang, specializing in creating
+            modern web applications. I am passionate about problem-solving and
+            always strive to improve my skills in programming and teamwork.
           </motion.p>
         </motion.div>
       </motion.div>
@@ -179,7 +186,11 @@ export default function AboutPage() {
                 whileHover={{ rotate: 360 }}
                 transition={{ duration: 0.5 }}
               >
-                <img src={skill.icon || "/placeholder.svg"} alt={skill.name} className="h-12 w-12" />
+                <img
+                  src={skill.icon || "/placeholder.svg"}
+                  alt={skill.name}
+                  className="h-12 w-12"
+                />
               </motion.div>
               <p className="text-center text-sm font-medium">{skill.name}</p>
             </motion.div>
@@ -210,7 +221,11 @@ export default function AboutPage() {
               whileHover={{ scale: 1.05 }}
             >
               <div className="relative h-48">
-                <img src={edu.image || "/placeholder.svg"} alt={edu.school} className="h-full w-full object-cover" />
+                <img
+                  src={edu.image || "/placeholder.svg"}
+                  alt={edu.school}
+                  className="h-full w-full object-cover"
+                />
                 <div className="absolute inset-0 bg-primary/50"></div>
                 <motion.div
                   className="absolute bottom-4 left-4 right-4"
@@ -237,6 +252,5 @@ export default function AboutPage() {
         </div>
       </motion.div>
     </motion.div>
-  )
+  );
 }
-

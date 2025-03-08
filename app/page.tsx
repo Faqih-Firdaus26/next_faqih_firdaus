@@ -1,29 +1,29 @@
-"use client"
+"use client";
 
-import { useEffect, useRef, useState } from "react"
-import Link from "next/link"
-import { ArrowRight } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { TypeAnimation } from "react-type-animation"
-import { motion, useScroll, useTransform } from "framer-motion"
+import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { TypeAnimation } from "react-type-animation";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 export default function Home() {
-  const [scrollY, setScrollY] = useState(0)
-  const parallaxRef = useRef<HTMLDivElement>(null)
-  const cardsRef = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll()
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
-  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8])
+  const [scrollY, setScrollY] = useState(0);
+  const parallaxRef = useRef<HTMLDivElement>(null);
+  const cardsRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll();
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrollY(window.scrollY)
-    }
+      setScrollY(window.scrollY);
+    };
 
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // Featured projects for 3D cards
   const featuredProjects = [
@@ -31,27 +31,24 @@ export default function Home() {
       id: 1,
       title: "Smart Clinic",
       description: "Smart Prediction Lung Diese",
-      image:
-        "https://images.unsplash.com/photo-1555421689-3f034debb7a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+      image: "/projects/smart-clinic.jpg",
       tags: ["Python", "Machine Learning", "Tailwind CSS"],
     },
     {
       id: 2,
       title: "Silo Sirloin",
       description: "A silo and sirloin meat sales website",
-      image:
-        "https://images.unsplash.com/photo-1592210454359-9043f067919b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+      image: "/projects/silo-sirloin.jpg",
       tags: ["NextJS", "Tailwind CSS", "API"],
     },
     {
       id: 3,
       title: "Jelajah Jawa",
       description: "a java island news portal website",
-      image:
-        "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80",
+      image: "/projects/jelajah-jawa.jpg",
       tags: ["Laravel", "Tailwind CSS", "Blade"],
     },
-  ]
+  ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -62,17 +59,20 @@ export default function Home() {
         delayChildren: 0.3,
       },
     },
-  }
+  };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 },
-  }
+  };
 
   return (
     <motion.div initial="hidden" animate="visible" variants={containerVariants}>
       {/* Hero section with parallax */}
-      <motion.section className="relative h-screen overflow-hidden" variants={itemVariants}>
+      <motion.section
+        className="relative h-screen overflow-hidden"
+        variants={itemVariants}
+      >
         {/* Parallax background */}
         <motion.div
           ref={parallaxRef}
@@ -120,8 +120,9 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              I build exceptional and accessible digital experiences for the web. Focused on creating products that are
-              inclusive, performant, and delightful.
+              I build exceptional and accessible digital experiences for the
+              web. Focused on creating products that are inclusive, performant,
+              and delightful.
             </motion.p>
 
             <motion.div
@@ -148,15 +149,26 @@ export default function Home() {
           className="absolute bottom-10 left-1/2 z-10 -translate-x-1/2"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8, repeat: Number.POSITIVE_INFINITY, repeatType: "reverse" }}
+          transition={{
+            duration: 0.8,
+            delay: 0.8,
+            repeat: Number.POSITIVE_INFINITY,
+            repeatType: "reverse",
+          }}
         >
           <div className="flex flex-col items-center">
-            <span className="mb-2 text-sm font-medium text-gray-500">Scroll Down</span>
+            <span className="mb-2 text-sm font-medium text-gray-500">
+              Scroll Down
+            </span>
             <div className="h-10 w-6 rounded-full border-2 border-gray-400">
               <motion.div
                 className="mx-auto mt-2 h-2 w-2 rounded-full bg-gray-400"
                 animate={{ y: [0, 8, 0] }}
-                transition={{ duration: 1.5, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Number.POSITIVE_INFINITY,
+                  ease: "easeInOut",
+                }}
               ></motion.div>
             </div>
           </div>
@@ -164,7 +176,10 @@ export default function Home() {
       </motion.section>
 
       {/* Featured projects with 3D cards */}
-      <motion.section className="py-20 bg-muted/50 dark:bg-muted/20" variants={itemVariants}>
+      <motion.section
+        className="py-20 bg-muted/50 dark:bg-muted/20"
+        variants={itemVariants}
+      >
         <div className="container mx-auto px-6">
           <motion.h2
             className="mb-12 text-center text-3xl font-bold"
@@ -199,8 +214,12 @@ export default function Home() {
                       </div>
 
                       <div className="p-6">
-                        <h3 className="mb-2 text-xl font-bold">{project.title}</h3>
-                        <p className="mb-4 text-muted-foreground">{project.description}</p>
+                        <h3 className="mb-2 text-xl font-bold">
+                          {project.title}
+                        </h3>
+                        <p className="mb-4 text-muted-foreground">
+                          {project.description}
+                        </p>
 
                         <div className="flex flex-wrap gap-2">
                           {project.tags.map((tag) => (
@@ -241,7 +260,10 @@ export default function Home() {
       </motion.section>
 
       {/* About section with parallax */}
-      <motion.section className="relative overflow-hidden py-20" variants={itemVariants}>
+      <motion.section
+        className="relative overflow-hidden py-20"
+        variants={itemVariants}
+      >
         <motion.div
           className="absolute inset-0 z-0"
           initial={{ y: 0 }}
@@ -265,8 +287,9 @@ export default function Home() {
           >
             <h2 className="mb-6 text-3xl font-bold text-gray-800">About Me</h2>
             <p className="mb-8 text-lg text-gray-600">
-              I'm a passionate Full Stack Developer with over 2 years of experience building web applications. I
-              specialize in JavaScript, React, NextJs, Laravel and modern web technologies.
+              I'm a passionate Full Stack Developer with over 2 years of
+              experience building web applications. I specialize in JavaScript,
+              React, NextJs, Laravel and modern web technologies.
             </p>
 
             <Link
@@ -280,6 +303,5 @@ export default function Home() {
         </div>
       </motion.section>
     </motion.div>
-  )
+  );
 }
-

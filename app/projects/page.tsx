@@ -1,18 +1,18 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState, useRef, useEffect } from "react"
-import { ExternalLink, Github } from "lucide-react"
-import { motion, useScroll, useTransform } from "framer-motion"
+import { useState, useRef, useEffect } from "react";
+import { ExternalLink, Github } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 const projects = [
   {
     id: 1,
     title: "Smart Vertical Farm",
-    description: "Vertical aeroponic farm system using IoT, Machine Learning, and solar panels.",
-    image:
-      "https://images.unsplash.com/photo-1661956602944-249bcd04b63f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+    description:
+      "Vertical aeroponic farm system using IoT, Machine Learning, and solar panels.",
+    image: "/projects/aeroponic.png",
     tags: ["IoT", "Machine Learning", "Solar Panel"],
     liveUrl: "#",
     githubUrl: "#",
@@ -21,8 +21,7 @@ const projects = [
     id: 2,
     title: "Smart Clinic",
     description: "Smart Prediction Lung Diese",
-    image:
-      "https://images.unsplash.com/photo-1555421689-3f034debb7a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+    image: "/projects/smart-clinic.jpg",
     tags: ["Python", "Machine Learning", "Tailwind CSS"],
     liveUrl: "#",
     githubUrl: "#",
@@ -31,8 +30,7 @@ const projects = [
     id: 3,
     title: "Silo Sirloin",
     description: "A silo and sirloin meat sales website",
-    image:
-      "https://images.unsplash.com/photo-1592210454359-9043f067919b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+    image: "/projects/silo-sirloin.jpg",
     tags: ["NextJS", "Tailwind CSS", "API"],
     liveUrl: "#",
     githubUrl: "#",
@@ -41,8 +39,7 @@ const projects = [
     id: 4,
     title: "Jelajah Jawa",
     description: "a java island news portal website",
-    image:
-      "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80",
+    image: "/projects/jelajah-jawa.jpg",
     tags: ["Laravel", "Tailwind CSS", "Blade"],
     liveUrl: "#",
     githubUrl: "#",
@@ -51,8 +48,7 @@ const projects = [
     id: 5,
     title: "Andalas News",
     description: "a Sumatran island news portal website",
-    image:
-      "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+    image: "/projects/andalas-news.jpg",
     tags: ["Laravel", "Tailwind CSS", "Blade"],
     liveUrl: "#",
     githubUrl: "#",
@@ -61,53 +57,53 @@ const projects = [
     id: 6,
     title: "Borneo Bulletin",
     description: "a kalimantan island news portal website",
-    image:
-      "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+    image: "/projects/borneo-bulletin.jpg",
     tags: ["Laravel", "Tailwind CSS", "Blade"],
     liveUrl: "#",
     githubUrl: "#",
   },
-]
+];
 
 export default function ProjectsPage() {
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null)
-  const cardsRef = useRef<HTMLDivElement>(null)
-  const [scrollY, setScrollY] = useState(0)
-  const { scrollYProgress } = useScroll()
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
-  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8])
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+  const cardsRef = useRef<HTMLDivElement>(null);
+  const [scrollY, setScrollY] = useState(0);
+  const { scrollYProgress } = useScroll();
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrollY(window.scrollY)
-    }
+      setScrollY(window.scrollY);
+    };
 
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // Mouse move handler for 3D effect
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>, id: number) => {
-    if (!cardsRef.current) return
+    if (!cardsRef.current) return;
 
-    const card = e.currentTarget
-    const rect = card.getBoundingClientRect()
-    const x = e.clientX - rect.left
-    const y = e.clientY - rect.top
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
 
-    const centerX = rect.width / 2
-    const centerY = rect.height / 2
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
 
-    const rotateX = (y - centerY) / 10
-    const rotateY = (centerX - x) / 10
+    const rotateX = (y - centerY) / 10;
+    const rotateY = (centerX - x) / 10;
 
-    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`
-  }
+    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
+  };
 
   const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.currentTarget.style.transform = "perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)"
-    setHoveredCard(null)
-  }
+    e.currentTarget.style.transform =
+      "perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)";
+    setHoveredCard(null);
+  };
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -118,12 +114,12 @@ export default function ProjectsPage() {
         delayChildren: 0.3,
       },
     },
-  }
+  };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 },
-  }
+  };
 
   return (
     <motion.div
@@ -133,7 +129,10 @@ export default function ProjectsPage() {
       variants={containerVariants}
     >
       {/* Parallax header */}
-      <motion.div className="relative mb-16 overflow-hidden rounded-xl py-16" variants={itemVariants}>
+      <motion.div
+        className="relative mb-16 overflow-hidden rounded-xl py-16"
+        variants={itemVariants}
+      >
         <motion.div
           className="absolute inset-0 z-0"
           initial={{ y: 0 }}
@@ -162,13 +161,17 @@ export default function ProjectsPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            A collection of my recent work and personal projects. Each project represents a unique challenge and
-            solution.
+            A collection of my recent work and personal projects. Each project
+            represents a unique challenge and solution.
           </motion.p>
         </div>
       </motion.div>
 
-      <motion.div ref={cardsRef} className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3" variants={itemVariants}>
+      <motion.div
+        ref={cardsRef}
+        className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3"
+        variants={itemVariants}
+      >
         {projects.map((project) => (
           <motion.div
             key={project.id}
@@ -193,7 +196,9 @@ export default function ProjectsPage() {
 
             <div className="p-6">
               <h3 className="mb-2 text-xl font-bold">{project.title}</h3>
-              <p className="mb-4 text-muted-foreground">{project.description}</p>
+              <p className="mb-4 text-muted-foreground">
+                {project.description}
+              </p>
 
               <div className="mb-4 flex flex-wrap gap-2">
                 {project.tags.map((tag) => (
@@ -249,6 +254,5 @@ export default function ProjectsPage() {
         ))}
       </motion.div>
     </motion.div>
-  )
+  );
 }
-

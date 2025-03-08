@@ -1,13 +1,24 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { Home, User, Briefcase, FolderKanban, Mail, Github, Linkedin, Moon, Sun, Menu } from "lucide-react"
-import { cn } from "@/lib/utils"
-import { useTheme } from "next-themes"
-import { Button } from "@/components/ui/button"
-import MobileSidebar from "./mobile-sidebar"
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import {
+  Home,
+  User,
+  Briefcase,
+  FolderKanban,
+  Mail,
+  Github,
+  Linkedin,
+  Moon,
+  Sun,
+  Menu,
+} from "lucide-react";
+import { cn } from "@/lib/utils";
+import { useTheme } from "next-themes";
+import { Button } from "@/components/ui/button";
+import MobileSidebar from "./mobile-sidebar";
 
 const routes = [
   {
@@ -35,34 +46,36 @@ const routes = [
     name: "Contact",
     icon: Mail,
   },
-]
+];
 
 export default function Navbar() {
-  const pathname = usePathname()
-  const [scrolled, setScrolled] = useState(false)
-  const { theme, setTheme } = useTheme()
-  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false)
+  const pathname = usePathname();
+  const [scrolled, setScrolled] = useState(false);
+  const { theme, setTheme } = useTheme();
+  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20)
-    }
+      setScrolled(window.scrollY > 20);
+    };
 
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const handleMobileSidebarToggle = () => {
-    setIsMobileSidebarOpen((prev) => !prev)
-  }
+    setIsMobileSidebarOpen((prev) => !prev);
+  };
 
   return (
     <>
       <header
         className={cn(
           "fixed top-0 left-0 right-0 z-40 transition-all duration-300",
-          scrolled ? "bg-background/90 backdrop-blur-md shadow-md py-3" : "bg-transparent py-5",
-          theme === "dark" ? "text-white" : "text-gray-900",
+          scrolled
+            ? "bg-background/90 backdrop-blur-md shadow-md py-3"
+            : "bg-transparent py-5",
+          theme === "dark" ? "text-white" : "text-gray-900"
         )}
       >
         <div className="container mx-auto px-6 flex items-center justify-between">
@@ -70,7 +83,7 @@ export default function Navbar() {
           <Link href="/" className="flex items-center">
             <div className="h-10 w-10 overflow-hidden rounded-full border-2 border-primary/20 mr-3">
               <img
-                src="https://sjc.microlink.io/Z4GDSiw1ntvwZrIsBq7ePjCaUqil3IZ1pVFf1nLybjrITL8xCwYpR5kQ2Ke9nihhrdLkB-xvEAMjSERBW8MxOw.jpeg"
+                src="/about/faqih.jpg"
                 alt="Profile"
                 className="h-full w-full object-cover"
               />
@@ -81,7 +94,7 @@ export default function Navbar() {
           {/* Navigation */}
           <nav className="hidden md:flex items-center space-x-1">
             {routes.map((route) => {
-              const isActive = pathname === route.path
+              const isActive = pathname === route.path;
 
               return (
                 <Link
@@ -92,8 +105,8 @@ export default function Navbar() {
                     isActive
                       ? "text-primary"
                       : theme === "dark"
-                        ? "text-gray-300 hover:text-white"
-                        : "text-gray-600 hover:text-gray-900",
+                      ? "text-gray-300 hover:text-white"
+                      : "text-gray-600 hover:text-gray-900"
                   )}
                 >
                   <span className="relative z-10">{route.name}</span>
@@ -104,7 +117,7 @@ export default function Navbar() {
                       "absolute inset-0 rounded-md -z-0 transition-all duration-300 transform",
                       isActive
                         ? "bg-primary/10"
-                        : "bg-transparent group-hover:bg-primary/5 scale-0 group-hover:scale-100",
+                        : "bg-transparent group-hover:bg-primary/5 scale-0 group-hover:scale-100"
                     )}
                   ></span>
 
@@ -113,7 +126,7 @@ export default function Navbar() {
                     <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1/2 h-0.5 bg-primary rounded-full"></span>
                   )}
                 </Link>
-              )
+              );
             })}
           </nav>
 
@@ -125,7 +138,9 @@ export default function Navbar() {
               rel="noopener noreferrer"
               className={cn(
                 "hidden md:block transition-colors",
-                theme === "dark" ? "text-gray-300 hover:text-white" : "text-gray-600 hover:text-gray-900",
+                theme === "dark"
+                  ? "text-gray-300 hover:text-white"
+                  : "text-gray-600 hover:text-gray-900"
               )}
             >
               <Github className="h-5 w-5" />
@@ -137,7 +152,9 @@ export default function Navbar() {
               rel="noopener noreferrer"
               className={cn(
                 "hidden md:block transition-colors",
-                theme === "dark" ? "text-gray-300 hover:text-white" : "text-gray-600 hover:text-gray-900",
+                theme === "dark"
+                  ? "text-gray-300 hover:text-white"
+                  : "text-gray-600 hover:text-gray-900"
               )}
             >
               <Linkedin className="h-5 w-5" />
@@ -147,9 +164,17 @@ export default function Navbar() {
               variant="ghost"
               size="icon"
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className={theme === "dark" ? "text-gray-300 hover:text-white" : "text-gray-600 hover:text-gray-900"}
+              className={
+                theme === "dark"
+                  ? "text-gray-300 hover:text-white"
+                  : "text-gray-600 hover:text-gray-900"
+              }
             >
-              {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+              {theme === "dark" ? (
+                <Sun className="h-5 w-5" />
+              ) : (
+                <Moon className="h-5 w-5" />
+              )}
               <span className="sr-only">Toggle theme</span>
             </Button>
             <Button
@@ -157,7 +182,9 @@ export default function Navbar() {
               size="icon"
               className={cn(
                 "md:hidden",
-                theme === "dark" ? "text-gray-300 hover:text-white" : "text-gray-600 hover:text-gray-900",
+                theme === "dark"
+                  ? "text-gray-300 hover:text-white"
+                  : "text-gray-600 hover:text-gray-900"
               )}
               onClick={handleMobileSidebarToggle}
             >
@@ -167,8 +194,10 @@ export default function Navbar() {
           </div>
         </div>
       </header>
-      <MobileSidebar isOpen={isMobileSidebarOpen} onOpenChange={setIsMobileSidebarOpen} />
+      <MobileSidebar
+        isOpen={isMobileSidebarOpen}
+        onOpenChange={setIsMobileSidebarOpen}
+      />
     </>
-  )
+  );
 }
-
